@@ -22,6 +22,8 @@ import {
   Thermometer,
   Shield,
   Clock,
+  Banknote,
+  FileCheck,
   Menu,
   X,
   Search,
@@ -334,14 +336,14 @@ Please provide standard shipping lead times, MOQ, and wholesale pricing. Thank y
               >
                 <motion.div variants={fadeUpText} className="flex flex-col items-center justify-center mb-6">
                   <Logo className="h-[200px] w-[200px] mb-0 opacity-100 transition-transform duration-300 hover:scale-105 drop-shadow-md" />
-                  <span className="text-[27px] font-bold tracking-[0.2em] text-[#54788D]">ExportaMed</span>
+                  <span className="text-[32px] font-bold tracking-tight text-[#68718e]">ExportaMed</span>
                 </motion.div>
                 
                 <motion.h1 variants={fadeUpText} className="text-4xl font-bold tracking-tight text-slate-900 sm:text-[54px] mb-6 leading-[1.1] max-w-4xl mx-auto">
-                  Premium Medical Supplies. Delivered Globally.
+                  Connecting European Manufacturer with High-Growth Markets
                 </motion.h1>
                 <motion.p variants={fadeUpText} className="text-lg leading-relaxed text-slate-600 mb-10 max-w-3xl mx-auto font-normal">
-                  We bring top-tier European and US healthcare products to growing markets worldwide. Fast logistics, secure payments, and zero cross-border hassle.
+                  We streamline international B2B distribution for medical devices and consumables. By handling regulatory compliance, cross-border logistics, and local market access, we build secure, high-yield supply chains for manufacturers and distributors alike.
                 </motion.p>
                 
                 <motion.div variants={fadeUpText} className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -349,7 +351,7 @@ Please provide standard shipping lead times, MOQ, and wholesale pricing. Thank y
                     onClick={() => handleCtaClick('export')}
                     className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded bg-blue-950 px-8 py-4 text-sm font-semibold text-white shadow-md transition-all hover:bg-blue-900 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]"
                   >
-                    Partner as a Supplier <ArrowRight className="h-4 w-4" />
+                    Partner with Us <ArrowRight className="h-4 w-4" />
                   </button>
                   <button 
                     onClick={() => navigateTo('catalogue')}
@@ -375,8 +377,8 @@ Please provide standard shipping lead times, MOQ, and wholesale pricing. Thank y
                       className="relative rounded-2xl overflow-hidden bg-slate-100 aspect-[4/3] shadow-lg border border-slate-200"
                     >
                       <img
-                        src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80"
-                        alt="Sterile high-precision manufacturing lab"
+                        src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1200&q=80"
+                        alt="Pharmaceutical production line"
                         className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                         referrerPolicy="no-referrer"
                       />
@@ -391,10 +393,10 @@ Please provide standard shipping lead times, MOQ, and wholesale pricing. Thank y
                         FOR MANUFACTURERS
                       </span>
                       <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-                        Grow Your Global Sales With Zero Risk.
+                        Expand Your Market Footprint, Zero Infrastructure Risk.
                       </h2>
                       <p className="mt-4 text-lg leading-relaxed text-slate-600">
-                        Expand into new markets without the red tape. We buy your products directly, pay upfront, and handle all the export logistics and local compliance. You focus on manufacturing; we focus on scaling your reach.
+                        Expanding in new international markets can strain internal regulatory and sales bandwidth. ExportaMed acts as your dedicated regional export partner.
                       </p>
                     </div>
 
@@ -402,11 +404,11 @@ Please provide standard shipping lead times, MOQ, and wholesale pricing. Thank y
                     <div className="space-y-6 pt-2">
                       <div className="flex gap-4 items-start">
                         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-100 text-blue-950">
-                          <Clock className="h-5 w-5" />
+                          <Banknote className="h-5 w-5" />
                         </div>
                         <div>
-                          <h3 className="text-base font-semibold text-slate-900">Direct Purchases</h3>
-                          <p className="mt-1 text-sm text-slate-600">We buy from you on fast 3-5 day terms.</p>
+                          <h3 className="text-base font-semibold text-slate-900">Upfront Capital</h3>
+                          <p className="mt-1 text-sm text-slate-600">We secure transactions with structured, reliable payment terms, absorbing local commercial risks.</p>
                         </div>
                       </div>
 
@@ -416,7 +418,7 @@ Please provide standard shipping lead times, MOQ, and wholesale pricing. Thank y
                         </div>
                         <div>
                           <h3 className="text-base font-semibold text-slate-900">We Handle the Paperwork</h3>
-                          <p className="mt-1 text-sm text-slate-600">Total management of customs and local registrations.</p>
+                          <p className="mt-1 text-sm text-slate-600">We handle the local registration filings, translation mandates, and customs clearings in the destination markets.</p>
                         </div>
                       </div>
 
@@ -425,8 +427,8 @@ Please provide standard shipping lead times, MOQ, and wholesale pricing. Thank y
                           <TrendingUp className="h-5 w-5" />
                         </div>
                         <div>
-                          <h3 className="text-base font-semibold text-slate-900">Guaranteed Growth</h3>
-                          <p className="mt-1 text-sm text-slate-600">Exclusive contracts with clear, scalable volume targets.</p>
+                          <h3 className="text-base font-semibold text-slate-900">Brand Protection</h3>
+                          <p className="mt-1 text-sm text-slate-600">We maintain strict control over distribution networks to preserve your premium market positioning.</p>
                         </div>
                       </div>
                     </div>
@@ -448,10 +450,10 @@ Please provide standard shipping lead times, MOQ, and wholesale pricing. Thank y
                         FOR DISTRIBUTORS
                       </span>
                       <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-                        Premium Healthcare Products You Can Trust.
+                        Access to Premium Brands
                       </h2>
                       <p className="mt-4 text-lg leading-relaxed text-slate-600">
-                        Get direct access to the highest-quality dental, medical, and hygiene supplies from Europe and the US. We offer flexible payment terms and reliable shipping so you can keep your customers happy and your business growing.
+                        Procuring top-tier clinical goods should not mean facing unpredictable lead times or administrative gridlock.
                       </p>
                     </div>
 
@@ -459,31 +461,31 @@ Please provide standard shipping lead times, MOQ, and wholesale pricing. Thank y
                     <div className="space-y-6 pt-2">
                       <div className="flex gap-4 items-start">
                         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-900">
-                          <Award className="h-5 w-5 text-blue-950" />
-                        </div>
-                        <div>
-                          <h3 className="text-base font-semibold text-slate-900">Top-Tier Brands</h3>
-                          <p className="mt-1 text-sm text-slate-600">Exclusive access to precision European and US instruments.</p>
-                        </div>
-                      </div>
-
-                      <div className="flex gap-4 items-start">
-                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-900">
-                          <DollarSign className="h-5 w-5 text-blue-950" />
-                        </div>
-                        <div>
-                          <h3 className="text-base font-semibold text-slate-900">Smart Financing</h3>
-                          <p className="mt-1 text-sm text-slate-600">Flexible credit terms designed to match your cash flow.</p>
-                        </div>
-                      </div>
-
-                      <div className="flex gap-4 items-start">
-                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-900">
                           <Ship className="h-5 w-5 text-blue-950" />
                         </div>
                         <div>
-                          <h3 className="text-base font-semibold text-slate-900">Reliable Supply</h3>
-                          <p className="mt-1 text-sm text-slate-600">Consistent, fully insured shipments right to your local port.</p>
+                          <h3 className="text-base font-semibold text-slate-900">Streamlined Supply Chains</h3>
+                          <p className="mt-1 text-sm text-slate-600">Direct access to certified European manufacturers, eliminating fragmented secondary brokers</p>
+                        </div>
+                      </div>
+
+                      <div className="flex gap-4 items-start">
+                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-900">
+                          <FileCheck className="h-5 w-5 text-blue-950" />
+                        </div>
+                        <div>
+                          <h3 className="text-base font-semibold text-slate-900">Regulatory Facilitation</h3>
+                          <p className="mt-1 text-sm text-slate-600">We provide fully compliant documentation sets (DoC, ISO certificates) to guarantee smooth local customs clearance.</p>
+                        </div>
+                      </div>
+
+                      <div className="flex gap-4 items-start">
+                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-900">
+                          <Award className="h-5 w-5 text-blue-950" />
+                        </div>
+                        <div>
+                          <h3 className="text-base font-semibold text-slate-900">Tailored Portfolios</h3>
+                          <p className="mt-1 text-sm text-slate-600">Specializing in high-rotation clinical goods, from precision diamond drills to advanced dental lab consumables</p>
                         </div>
                       </div>
                     </div>
@@ -704,7 +706,11 @@ Please provide standard shipping lead times, MOQ, and wholesale pricing. Thank y
                   
                   {/* Category Chips */}
                   <div className="flex flex-wrap gap-2 items-center order-2 lg:order-1">
-                    <button 
+                    <motion.button 
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.3, delay: 0.1 }}
                       onClick={() => setSelectedCategory('All')}
                       className={`px-4 py-2 text-xs font-bold rounded transition-all cursor-pointer ${
                         selectedCategory === 'All' 
@@ -713,12 +719,16 @@ Please provide standard shipping lead times, MOQ, and wholesale pricing. Thank y
                       }`}
                     >
                       Show All ({PRODUCTS.length})
-                    </button>
-                    {CATEGORIES.map(cat => {
+                    </motion.button>
+                    {CATEGORIES.map((cat, idx) => {
                       const count = PRODUCTS.filter(p => p.category === cat).length;
                       return (
-                        <button 
+                        <motion.button 
                           key={cat}
+                          initial={{ opacity: 0, y: 10 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.3, delay: 0.1 + ((idx + 1) * 0.05) }}
                           onClick={() => setSelectedCategory(cat)}
                           className={`px-4 py-2 text-xs font-bold rounded transition-all cursor-pointer ${
                             selectedCategory === cat 
@@ -727,27 +737,25 @@ Please provide standard shipping lead times, MOQ, and wholesale pricing. Thank y
                           }`}
                         >
                           {cat} ({count})
-                        </button>
+                        </motion.button>
                       );
                     })}
                   </div>
 
                   {/* Search box input layout */}
-                  <div className="relative w-full lg:w-96 order-1 lg:order-2">
-                    <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-                      <Search className="h-4.5 w-4.5" />
-                    </div>
+                  <div className="relative w-full lg:w-96 order-1 lg:order-2 flex items-center">
+                    <Search className="absolute left-3.5 h-4 w-4 text-slate-400 pointer-events-none" />
                     <input 
                       type="text" 
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       placeholder="Search SKU, key-term, origin..."
-                      className="block w-full pl-10 pr-4 py-2.5 text-sm bg-white rounded border border-slate-200 text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-900 focus:border-transparent shadow-sm outline-none placeholder-slate-400 transition-all"
+                      className="block w-full pl-10 pr-10 py-2.5 text-sm bg-white rounded border border-slate-200 text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-900 focus:border-transparent shadow-sm outline-none placeholder-slate-400 transition-all"
                     />
                     {searchQuery && (
                       <button 
                         onClick={() => setSearchQuery('')}
-                        className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600 bg-transparent border-none cursor-pointer"
+                        className="absolute right-3 text-slate-400 hover:text-slate-600 bg-transparent border-none cursor-pointer flex items-center justify-center p-1"
                       >
                         <X className="h-4 w-4" />
                       </button>
@@ -879,7 +887,7 @@ Please provide standard shipping lead times, MOQ, and wholesale pricing. Thank y
               Let’s Grow Your Business.
             </h2>
             <p className="text-lg leading-relaxed text-slate-600 max-w-2xl mx-auto">
-              For manufacturers seeking a zero-friction export partner, or regional distributors requiring access to premium clinical supply lines, contact our trade desk.
+              Navigating cross-border medical commerce requires more than logistics — it demands absolute regulatory integrity and clinical understanding.
             </p>
           </div>
           
