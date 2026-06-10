@@ -62,6 +62,8 @@ export default function App() {
   const [currentPage, setCurrentPage] = useState<'home' | 'catalogue'>('home');
   const [inquiryType, setInquiryType] = useState<string>('');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isMessageSent, setIsMessageSent] = useState(false);
+  const [isSending, setIsSending] = useState(false);
   
   // Catalogue states
   const [searchQuery, setSearchQuery] = useState('');
@@ -182,7 +184,7 @@ Please provide standard shipping lead times, MOQ, and wholesale pricing. Thank y
               Buy From Us
             </a>
             <button 
-              onClick={() => navigateTo('catalogue')} 
+              onClick={() => { setSelectedCategory('All'); navigateTo('catalogue'); }} 
               className={`text-sm font-medium transition-colors ${currentPage === 'catalogue' ? 'text-blue-900 font-semibold' : 'text-slate-600 hover:text-blue-900'}`}
             >
               Product Catalogue
@@ -237,7 +239,7 @@ Please provide standard shipping lead times, MOQ, and wholesale pricing. Thank y
                 Buy From Us
               </a>
               <button 
-                onClick={() => navigateTo('catalogue')}
+                onClick={() => { setSelectedCategory('All'); navigateTo('catalogue'); }}
                 className={`block w-full text-left text-base font-medium ${currentPage === 'catalogue' ? 'text-blue-900 font-semibold' : 'text-slate-600'}`}
               >
                 Product Catalogue
@@ -340,10 +342,10 @@ Please provide standard shipping lead times, MOQ, and wholesale pricing. Thank y
                 </motion.div>
                 
                 <motion.h1 variants={fadeUpText} className="text-4xl font-bold tracking-tight text-slate-900 sm:text-[54px] mb-6 leading-[1.1] max-w-4xl mx-auto">
-                  Connecting European Manufacturer with High-Growth Markets
+                  Connecting European Manufacturers with High-Growth Markets
                 </motion.h1>
                 <motion.p variants={fadeUpText} className="text-lg leading-relaxed text-slate-600 mb-10 max-w-3xl mx-auto font-normal">
-                  We streamline international B2B distribution for medical devices and consumables. By handling regulatory compliance, cross-border logistics, and local market access, we build secure, high-yield supply chains for manufacturers and distributors alike.
+                  We streamline international B2B distribution for premium medical devices and clinical consumables. By handling regulatory compliance, cross-border logistics, and local market access, we build secure, high-yield supply chains for manufacturers and distributors alike.
                 </motion.p>
                 
                 <motion.div variants={fadeUpText} className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -354,7 +356,7 @@ Please provide standard shipping lead times, MOQ, and wholesale pricing. Thank y
                     Partner with Us <ArrowRight className="h-4 w-4" />
                   </button>
                   <button 
-                    onClick={() => navigateTo('catalogue')}
+                    onClick={() => { setSelectedCategory('All'); navigateTo('catalogue'); }}
                     className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded border border-slate-300 bg-white px-8 py-4 text-sm font-semibold text-slate-700 shadow-sm transition-all hover:bg-slate-50 hover:text-slate-900 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
                   >
                     View Our Catalogue
@@ -528,20 +530,20 @@ Please provide standard shipping lead times, MOQ, and wholesale pricing. Thank y
                   </p>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
                   {/* Card 1 */}
                   <motion.div 
                     whileHover={{ y: -4 }}
                     onClick={() => { setSelectedCategory('Precision Dental Consumables'); navigateTo('catalogue'); }}
-                    className="bg-white rounded-xl shadow-sm border border-slate-200 p-8 flex flex-col justify-between transition-all cursor-pointer hover:border-blue-900/40"
+                    className="bg-white rounded-xl shadow-sm border-[2px] border-slate-200 p-8 flex flex-col justify-between transition-all cursor-pointer hover:border-blue-900 shadow-md"
                   >
                     <div>
                       <div className="h-12 w-12 rounded-lg bg-blue-50 text-blue-900 flex items-center justify-center mb-6">
                         <Sparkles className="h-6 w-6 text-blue-950" />
                       </div>
-                      <h3 className="text-lg font-bold text-slate-900 mb-3">Precision Dental Consumables</h3>
+                      <h3 className="text-lg font-bold text-slate-900 mb-3">Precision Rotary Instruments</h3>
                       <p className="text-slate-600 text-sm leading-relaxed">
-                        Diamond drills, burs, and clinical composites engineered for perfection.
+                        Our flagship clinical vertical. We supply premium diamond burs, tungsten carbides, and surgical cutters designed for maximum tactile precision and minimal vibration.
                       </p>
                     </div>
                     <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-blue-950">
@@ -553,16 +555,16 @@ Please provide standard shipping lead times, MOQ, and wholesale pricing. Thank y
                   {/* Card 2 */}
                   <motion.div 
                     whileHover={{ y: -4 }}
-                    onClick={() => { setSelectedCategory('Laboratory Reagents'); navigateTo('catalogue'); }}
+                    onClick={() => { setSelectedCategory('Endodontic & Surgical Systems'); navigateTo('catalogue'); }}
                     className="bg-white rounded-xl shadow-sm border border-slate-200 p-8 flex flex-col justify-between transition-all cursor-pointer hover:border-emerald-600/40"
                   >
                     <div>
                       <div className="h-12 w-12 rounded-lg bg-emerald-50 text-emerald-900 flex items-center justify-center mb-6">
                         <Layers className="h-6 w-6 text-emerald-700" />
                       </div>
-                      <h3 className="text-lg font-bold text-slate-900 mb-3">Laboratory Reagents</h3>
+                      <h3 className="text-lg font-bold text-slate-900 mb-3">Endodontic & Surgical Systems</h3>
                       <p className="text-slate-600 text-sm leading-relaxed">
-                        High-purity diagnostic reagents and testing supplies for professional labs.
+                        Advanced clinical solutions for complex procedures, including specialized endodontic files, surgical handpieces, and sterile barrier protocols for implantology.
                       </p>
                     </div>
                     <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-emerald-700">
@@ -574,40 +576,19 @@ Please provide standard shipping lead times, MOQ, and wholesale pricing. Thank y
                   {/* Card 3 */}
                   <motion.div 
                     whileHover={{ y: -4 }}
-                    onClick={() => { setSelectedCategory('Surgical & Clinical'); navigateTo('catalogue'); }}
+                    onClick={() => { setSelectedCategory('Clinical Biomaterials & Restoratives'); navigateTo('catalogue'); }}
                     className="bg-white rounded-xl shadow-sm border border-slate-200 p-8 flex flex-col justify-between transition-all cursor-pointer hover:border-indigo-600/40"
                   >
                     <div>
                       <div className="h-12 w-12 rounded-lg bg-indigo-50 text-indigo-900 flex items-center justify-center mb-6">
                         <Package className="h-6 w-6 text-indigo-800" />
                       </div>
-                      <h3 className="text-lg font-bold text-slate-900 mb-3">Surgical & Clinical</h3>
+                      <h3 className="text-lg font-bold text-slate-900 mb-3">Clinical Biomaterials & Restoratives</h3>
                       <p className="text-slate-600 text-sm leading-relaxed">
-                        Everyday medical disposables and clinical barrier protection for cleanrooms.
+                        A comprehensive portfolio of professional dental materials, including high-strength composites, impression systems, and bonding agents.
                       </p>
                     </div>
                     <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-indigo-800">
-                      <span>Explore Products</span>
-                      <ChevronRight className="h-3 w-3" />
-                    </div>
-                  </motion.div>
-
-                  {/* Card 4 */}
-                  <motion.div 
-                    whileHover={{ y: -4 }}
-                    onClick={() => { setSelectedCategory('Consumer Hygiene'); navigateTo('catalogue'); }}
-                    className="bg-white rounded-xl shadow-sm border border-slate-200 p-8 flex flex-col justify-between transition-all cursor-pointer hover:border-cyan-600/40"
-                  >
-                    <div>
-                      <div className="h-12 w-12 rounded-lg bg-cyan-50 text-cyan-900 flex items-center justify-center mb-6">
-                        <Award className="h-6 w-6 text-cyan-800" />
-                      </div>
-                      <h3 className="text-lg font-bold text-slate-900 mb-3">Consumer Hygiene</h3>
-                      <p className="text-slate-600 text-sm leading-relaxed">
-                        Premium preventive oral care and daily personal wellness products.
-                      </p>
-                    </div>
-                    <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-cyan-800">
                       <span>Explore Products</span>
                       <ChevronRight className="h-3 w-3" />
                     </div>
@@ -897,7 +878,34 @@ Please provide standard shipping lead times, MOQ, and wholesale pricing. Thank y
             viewport={{ once: true }}
             className="bg-slate-50 border border-slate-200/80 rounded-2xl p-8 sm:p-12 shadow-sm"
           >
-            <form className="space-y-8" onSubmit={(e) => e.preventDefault()}>
+            {isMessageSent ? (
+              <div className="text-center py-12">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-emerald-100 mb-6">
+                  <CheckCircle2 className="h-8 w-8 text-emerald-600" />
+                </div>
+                <h3 className="text-2xl font-bold text-slate-900 mb-2">Thank you for your message</h3>
+                <p className="text-slate-600 mb-8">The message is sent. A trade desk agent will reply within 24 hours.</p>
+                <button 
+                  onClick={() => {
+                    setIsMessageSent(false);
+                    setInquiryType('');
+                  }}
+                  className="px-6 py-3 rounded bg-slate-200 text-sm font-semibold text-slate-900 hover:bg-slate-300 transition-colors"
+                >
+                  Send another inquiry
+                </button>
+              </div>
+            ) : (
+            <form className="space-y-8" onSubmit={(e) => {
+              e.preventDefault();
+              setIsSending(true);
+              
+              // Simulate API call
+              setTimeout(() => {
+                setIsSending(false);
+                setIsMessageSent(true);
+              }, 1500);
+            }}>
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium leading-6 text-slate-900">Name</label>
@@ -940,7 +948,7 @@ Please provide standard shipping lead times, MOQ, and wholesale pricing. Thank y
                   <div className="mt-2 text-slate-900">
                     <select 
                       id="type" 
-                      className="block w-full rounded border-slate-300 py-3 px-4 text-slate-900 ring-1 ring-inset ring-slate-200 focus:ring-2 focus:ring-inset focus:ring-blue-900 sm:text-sm bg-white transition-all outline-none text-slate-900 bg-white select-none" 
+                      className="block w-full rounded border-slate-300 py-3 px-4 text-slate-900 ring-1 ring-inset ring-slate-200 focus:ring-2 focus:ring-inset focus:ring-blue-900 sm:text-sm bg-white transition-all outline-none text-slate-900 border-none select-none" 
                       required 
                       value={inquiryType}
                       onChange={(e) => setInquiryType(e.target.value)}
@@ -968,13 +976,14 @@ Please provide standard shipping lead times, MOQ, and wholesale pricing. Thank y
               <div className="pt-4">
                 <button 
                   type="submit" 
-                  onClick={() => alert('Corporate inquiry submitted securely. A trade Desk agent will reply within 24 hours.')}
-                  className="w-full sm:w-auto px-8 py-4 rounded bg-blue-950 text-sm font-semibold text-white shadow hover:bg-blue-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-950 transition-all hover:-translate-y-0.5 active:translate-y-0 shadow-md cursor-pointer border-none"
+                  disabled={isSending}
+                  className="w-full sm:w-auto px-8 py-4 rounded bg-blue-950 text-sm font-semibold text-white shadow hover:bg-blue-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-950 transition-all hover:-translate-y-0.5 active:translate-y-0 shadow-md cursor-pointer border-none disabled:opacity-70 disabled:cursor-not-allowed"
                 >
-                  Send Inquiry
+                  {isSending ? 'Sending...' : 'Send Inquiry'}
                 </button>
               </div>
             </form>
+            )}
           </motion.div>
         </div>
       </section>
@@ -991,6 +1000,7 @@ Please provide standard shipping lead times, MOQ, and wholesale pricing. Thank y
               <span className="text-lg font-bold tracking-tight text-white">ExportaMed</span>
             </button>
             <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm font-medium text-slate-400">
+              <a href="mailto:office@exportamed.com" className="hover:text-white transition-colors">office@exportamed.com</a>
               <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
               <a href="#" className="hover:text-white transition-colors">Terms of Trade</a>
               <a href="#" className="hover:text-white transition-colors">Regulatory Disclosures</a>

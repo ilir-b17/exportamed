@@ -2,7 +2,7 @@ export interface Product {
   id: string;
   sku: string;
   name: string;
-  category: 'Precision Dental Consumables' | 'Laboratory Reagents' | 'Surgical & Clinical' | 'Consumer Hygiene';
+  category: 'Precision Dental Consumables' | 'Laboratory Reagents' | 'Surgical & Clinical';
   description: string;
   longDescription: string;
   origin: string;
@@ -15,15 +15,14 @@ export interface Product {
 export const CATEGORIES = [
   'Precision Dental Consumables',
   'Laboratory Reagents',
-  'Surgical & Clinical',
-  'Consumer Hygiene'
+  'Surgical & Clinical'
 ] as const;
 
 export const PRODUCTS: Product[] = [
   {
     id: 'dent-01',
     sku: 'NXT-DEN-882-FG',
-    name: 'Precision Diamond Burs (FG Series)',
+    name: 'Diamond Burs',
     category: 'Precision Dental Consumables',
     description: 'Premium electroplated natural diamond grit for high speed clinical friction grip preparation.',
     longDescription: 'Engineered in Germany, these FG diamond burs utilize selected natural diamond crystals bonded via state-of-the-art galvanic electroplating. This ensures maximum cutting efficiency, zero structural vibrations, and superior durability under high rotational speeds.',
@@ -31,72 +30,72 @@ export const PRODUCTS: Product[] = [
     packSize: '5 burs per blister pack',
     certifications: ['CE 0123', 'FDA Cleared', 'ISO 13485'],
     keySpec: '135°C Autoclavable, Multi-grit Selection',
-    image: 'https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&w=600&q=80'
+    image: '/diamond-bur-sphere.png'
   },
   {
     id: 'dent-02',
     sku: 'NXT-DEN-455-ZC',
-    name: 'Universal Nano-Hybrid Composite',
+    name: 'Tungsten Carbide Burs',
     category: 'Precision Dental Consumables',
-    description: 'Light-curing radioopaque universal restorative composite with 82% sub-micron zirconia silica filler.',
-    longDescription: 'A premier dental composite delivering exceptionally high wear resistance, pristine lifelike enamel polish, and minimal polymerization shrinkage. Ideal for both anterior and posterior restorations, with optimized non-sticky handling.',
-    origin: 'United States',
-    packSize: '4g syringe / 20 caps',
-    certifications: ['FDA Approved', 'CE Certified', 'ISO 14001'],
-    keySpec: '82% Inorganic Filler, Low 1.6% Shrinkage',
-    image: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=600&q=80'
+    description: 'High-performance precision-cut tungsten carbide operative burs for efficient cavity preparation and crown sectioning.',
+    longDescription: 'Manufactured from a single piece of premium-grade tungsten carbide to ensure concentricity and eliminate breakage. The advanced blade geometry provides exceptionally smooth cutting, minimal chatter, and superior debris clearance during high-speed operative procedures.',
+    origin: 'Switzerland',
+    packSize: '5 burs per pack',
+    certifications: ['CE Certified', 'ISO 13485', 'FDA Cleared'],
+    keySpec: 'One-piece construction, Anti-vibration blade geometry',
+    image: 'https://placehold.co/600x400/eeeeee/31343C?text=macro-photography+of+dental+drill+bits'
   },
   {
     id: 'dent-03',
     sku: 'NXT-DEN-901-KF',
-    name: 'Endodontic K-Files, Stainless Steel',
+    name: 'Ceramic Burs',
     category: 'Precision Dental Consumables',
-    description: 'Supreme flexibility and high-torque fracture resistance for precision root canal treatment.',
-    longDescription: 'Crafted from high-tensile stainless steel, these clinical endodontic hand-files feature a square cross-section to optimize cleaning efficiency. Designed with non-cutting safety tips and exact ISO taper standards for safe lateral debridement.',
+    description: 'Advanced biocompatible ceramic surgical burs for precision tissue-sparing bone cutting and minimal heat generation.',
+    longDescription: 'High-performance ceramic burs designed for delicate osteotomy and apical surgery. They offer unparalleled cutting precision with significantly reduced thermal transfer to surrounding bone tissue compared to metal burs. Completely corrosion-resistant and metal-free.',
     origin: 'Germany',
-    packSize: '6 files per slide box',
-    certifications: ['CE Certified', 'ISO 13485', 'EU MDR Compliant'],
-    keySpec: 'ISO Standard Color-coded Handles, High Shear Strengths',
-    image: 'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=600&q=80'
+    packSize: '3 burs per autoclavable cassette',
+    certifications: ['ISO 13485', 'CE 0123', 'FDA Cleared'],
+    keySpec: 'Zirconia-based ceramic, Low thermal conductivity',
+    image: 'https://placehold.co/600x400/eeeeee/31343C?text=macro-photography+of+dental+drill+bits'
   },
   {
     id: 'reag-01',
-    sku: 'NXT-RE-220-GL',
-    name: 'Enzymatic Glucose Assay Kit',
-    category: 'Laboratory Reagents',
-    description: 'Photometric diagnostic reagent system for precision automated clinical chemistry analyzers.',
-    longDescription: 'High-purity diagnostic reagent designed for the quantitative in vitro determination of glucose in serum or plasma. Perfect linearity up to 500 mg/dL with negligible cross-reactivity or interference from normal uric load.',
+    sku: 'NXT-DEN-122-SS',
+    name: 'Steel Burs',
+    category: 'Precision Dental Consumables',
+    description: 'High-quality stainless steel rotary burs for rapid dentin removal and general excavation.',
+    longDescription: 'Manufactured from high-grade hardened surgical steel to deliver reliable, aggressive cutting efficiency and longevity. Ideal for safe dentin removal, pediatric dentistry, and gross reduction under low speed operations.',
     origin: 'Germany',
-    packSize: '4 x 100mL dual-bottle kits',
-    certifications: ['CE-IVD Registered', 'ISO 13485', 'WHO GMP Compliant'],
-    keySpec: '24-Month Shelf Life, Ready-to-Use (R1/R2) Setup',
-    image: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=600&q=80'
+    packSize: '10 burs per pack',
+    certifications: ['CE Certified', 'ISO 13485', 'FDA Cleared'],
+    keySpec: 'Durable surgical steel, optimal for low-speed handpieces',
+    image: 'https://placehold.co/600x400/eeeeee/31343C?text=macro-photography+of+dental+drill+bits'
   },
   {
     id: 'reag-02',
-    sku: 'NXT-RE-411-PBS',
-    name: 'PBS Buffered Saline (10x Concentrate)',
-    category: 'Laboratory Reagents',
-    description: 'High-purity pyrogen-free cell culture grade phosphate-buffered saline solution.',
-    longDescription: 'Physiological buffer optimized for molecular biology, immunological assays, tissue processing, and general histology wash protocols. Strictly filtered to 0.1 µm, certified endotoxin-free, DNase-free, and RNase-free.',
-    origin: 'United States',
-    packSize: '500mL heavy-duty sterile bottle',
-    certifications: ['ISO 13485', 'USP Grade Ingredients'],
-    keySpec: 'pH 7.4 ± 0.1 on dilution, Ultrapure formulation',
-    image: 'https://images.unsplash.com/photo-1617155093730-a8bf47be792d?auto=format&fit=crop&w=600&q=80'
+    sku: 'NXT-DEN-605-AP',
+    name: 'Abrasives & Polishers',
+    category: 'Precision Dental Consumables',
+    description: 'High-quality dental polishers and abrasives for composite, ceramic, and amalgam restorations.',
+    longDescription: 'A comprehensive system of finishing and polishing instruments engineered for sequential use. Achieves a brilliant, high-gloss enamel-like finish on composites and ceramics without compromising the surface structure or causing micro-fractures.',
+    origin: 'Germany',
+    packSize: '12 polishers per assortment',
+    certifications: ['CE Certified', 'ISO 13485', 'FDA Cleared'],
+    keySpec: 'Diamond-impregnated silicone, Autoclavable',
+    image: '/abrasives-and-polishers.png'
   },
   {
     id: 'reag-03',
-    sku: 'NXT-RE-889-PCR',
-    name: 'Hot-Start qPCR MasterMix (2X)',
-    category: 'Laboratory Reagents',
-    description: 'Optimized real-time PCR amplification mix with antibody-mediated heat-activable polymerase.',
-    longDescription: 'Double-strength, optimized MasterMix containing a premium chemical hot-start Taq polymerase, ultra-pure dNTPs, a passive reference dye, and state-of-the-art reaction buffers. Engineered to prevent early unspecific amplification at room temperature.',
-    origin: 'United States',
-    packSize: '5 x 1.25mL vials (500 rxns)',
-    certifications: ['ISO 13485 Certified', 'Certified DNase/RNase Free'],
-    keySpec: 'Highly Sensitive Target Detection down to single-copy',
-    image: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=600&q=80'
+    sku: 'NXT-DEN-931-PE',
+    name: 'Pulp Extractor',
+    category: 'Precision Dental Consumables',
+    description: 'Precision barbed broaches for effective and safe intact pulp extirpation.',
+    longDescription: 'High-quality stainless steel barbed broaches designed for the fast and complete removal of pulpal tissue from root canals. The spirally arranged barbs engage the pulp tissue securely, ensuring an intact extraction and minimizing the risk of canal blockage.',
+    origin: 'Switzerland',
+    packSize: '10 broaches per pack',
+    certifications: ['CE Certified', 'ISO 13485', 'FDA Cleared'],
+    keySpec: 'Stainless steel, color-coded handles',
+    image: '/pulp-extractor.png'
   },
   {
     id: 'surg-01',
@@ -126,54 +125,15 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'surg-03',
-    sku: 'NXT-SUR-942-MK',
-    name: 'Clinical Face Masks (Type IIR)',
+    sku: 'NXT-SUR-458-OP',
+    name: 'Operative Instruments',
     category: 'Surgical & Clinical',
-    description: 'Premium triple-layer fluid-resistant protection with soft comfort earloops.',
-    longDescription: 'Medical grade masks certified to EN 14683 Type IIR specifications, providing ≥ 98% Bacterial Filtration Efficiency (BFE) and high splash resistance pressure at 120 mmHg. Constructed with non-irritating skin-safe inner linings.',
+    description: 'High-quality dental operative instruments used in restorative dentistry to rebuild, repair, or restore tooth structures.',
+    longDescription: 'Premium grade operative instruments engineered from surgical stainless steel. These instruments provide exceptional tactile sensitivity and precision for all restorative procedures. The comprehensive set includes excavators, pluggers, burnishers, and carvers designed for optimal material placement, shaping, and finishing of direct restorations.',
     origin: 'Germany',
-    packSize: '50 masks per retail dispenser',
-    certifications: ['EN 14683 Type IIR', 'CE Declaration of Conformity'],
-    keySpec: '≥ 98% Bacterial Filtration (BFE), Splash Resistant',
-    image: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=600&q=80'
-  },
-  {
-    id: 'hyg-01',
-    sku: 'NXT-HYG-301-CH',
-    name: 'Chlorhexidine Antiseptic Mouthwash',
-    category: 'Consumer Hygiene',
-    description: '0.2% concentration professional oral solution for intensive pre-and-post clinical periodontal hygiene.',
-    longDescription: 'An alcohol-free, highly potent antiseptic oral wash formulated specifically for professional periodontal care. Effectively inhibits plaque biofilm growth, safeguards healing tissues, and offers prolonged modern bacterial control.',
-    origin: 'France',
-    packSize: '300mL amber clinical bottle',
-    certifications: ['CE Registered', 'ISO 9001', 'GMP Standard'],
-    keySpec: '0.20% Active Chlorhexidine Digluconate, Non-burning Formula',
-    image: 'https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=600&q=80'
-  },
-  {
-    id: 'hyg-02',
-    sku: 'NXT-HYG-110-WX',
-    name: 'Orthodontic Soft Relief Wax',
-    category: 'Consumer Hygiene',
-    description: 'Premium medical-grade protective wax for orthodontic brackets and wire relief.',
-    longDescription: 'Pre-cut medical grade silicone-paraffin clinical relief wax. Forms a smooth, micro-barrier covering sharp brackets and ligatures, reducing mucous membrane friction and accelerating oral tissue irritation healing.',
-    origin: 'United States',
-    packSize: '50 small patient cases per carton',
-    certifications: ['FDA Approved Medical Device', 'ISO 22716'],
-    keySpec: 'Unscented, High Adhesion Cohesive Blend',
-    image: 'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=600&q=80'
-  },
-  {
-    id: 'hyg-03',
-    sku: 'NXT-HYG-505-IB',
-    name: 'Interdental Micro-fiber Brushes',
-    category: 'Consumer Hygiene',
-    description: 'Ultra-thin clinical grade ergonomic silicone interdental brushes for active plaque control.',
-    longDescription: 'Specially engineered high-density soft silicone rubber bristles that adapt to irregular interproximal spaces. Built with a robust metal-free flexible plastic core representing ultimate comfort and gentle gingival massage.',
-    origin: 'France',
-    packSize: '40 brushes per patient card',
-    certifications: ['ISO 13485', 'CE Certified', 'ISO 9001'],
-    keySpec: '0.4mm wire-equivalent slim tip, Ergonomic Non-slip Grip',
-    image: 'https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&fit=crop&w=600&q=80'
+    packSize: '10 instruments per set',
+    certifications: ['CE 0123', 'FDA 510(k)', 'ISO 13485'],
+    keySpec: 'Autoclavable stainless steel, Ergonomic handle design',
+    image: '/operative-instruments.png'
   }
 ];
