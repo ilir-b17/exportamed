@@ -43,20 +43,20 @@ export const PRODUCTS: Product[] = [
     packSize: '5 burs per pack',
     certifications: ['CE Certified', 'ISO 13485', 'FDA Cleared'],
     keySpec: 'One-piece construction, Anti-vibration blade geometry',
-    image: 'https://placehold.co/600x400/eeeeee/31343C?text=macro-photography+of+dental+drill+bits'
+    image: '/tungsten-carbite-bur.png'
   },
   {
     id: 'dent-03',
     sku: 'NXT-DEN-901-KF',
-    name: 'Ceramic Burs',
+    name: 'Laboratory & CAD/CAM Rotary Instruments',
     category: 'Precision Dental Consumables',
-    description: 'Advanced biocompatible ceramic surgical burs for precision tissue-sparing bone cutting and minimal heat generation.',
-    longDescription: 'High-performance ceramic burs designed for delicate osteotomy and apical surgery. They offer unparalleled cutting precision with significantly reduced thermal transfer to surrounding bone tissue compared to metal burs. Completely corrosion-resistant and metal-free.',
+    description: 'High-precision rotary instruments and milling burs optimized for dental laboratories and CAD/CAM milling machines.',
+    longDescription: 'Designed for extreme accuracy and extended tool life in digital dentistry workflows. These CAD/CAM milling burs feature specialized diamond and carbide coatings to ensure flawless margins and smooth surface finishes on zirconia, lithium disilicate, and PMMA dental restorations.',
     origin: 'Germany',
     packSize: '3 burs per autoclavable cassette',
     certifications: ['ISO 13485', 'CE 0123', 'FDA Cleared'],
-    keySpec: 'Zirconia-based ceramic, Low thermal conductivity',
-    image: 'https://placehold.co/600x400/eeeeee/31343C?text=macro-photography+of+dental+drill+bits'
+    keySpec: 'Optimized for CAD/CAM milling systems, Extended tool life',
+    image: '/CADCAM-milling-bur.jpg'
   },
   {
     id: 'reag-01',
@@ -69,7 +69,7 @@ export const PRODUCTS: Product[] = [
     packSize: '10 burs per pack',
     certifications: ['CE Certified', 'ISO 13485', 'FDA Cleared'],
     keySpec: 'Durable surgical steel, optimal for low-speed handpieces',
-    image: 'https://placehold.co/600x400/eeeeee/31343C?text=macro-photography+of+dental+drill+bits'
+    image: '/Steel-bur.png'
   },
   {
     id: 'reag-02',
@@ -95,33 +95,7 @@ export const PRODUCTS: Product[] = [
     packSize: '10 broaches per pack',
     certifications: ['CE Certified', 'ISO 13485', 'FDA Cleared'],
     keySpec: 'Stainless steel, color-coded handles',
-    image: '/pulp-extractor.png'
-  },
-  {
-    id: 'surg-01',
-    sku: 'NXT-SUR-400-SG',
-    name: 'Sterile SMS Surgical Gowns (Level 3)',
-    category: 'Surgical & Clinical',
-    description: 'High protection spunbond-meltblown clinical defensive gowns with critical ultrasonic seams.',
-    longDescription: 'Surgical gown constructed from dynamic multi-layer SMS fabric to present strong fluid repel properties and breathability. Delivers reliable, fluid-impact protection across critical chest, seam, and arm zones as certified by ANSI/AAMI PB70 protocols.',
-    origin: 'United States',
-    packSize: '50 units per reinforced carton',
-    certifications: ['AAMI Level 3 Certified', 'CE Mark', 'FDA 510(k)'],
-    keySpec: 'Lint-free, Breathable antistatic treatment, Double back ties',
-    image: 'https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?auto=format&fit=crop&w=600&q=80'
-  },
-  {
-    id: 'surg-02',
-    sku: 'NXT-SUR-102-GL',
-    name: 'Medical Nitrile Examination Gloves',
-    category: 'Surgical & Clinical',
-    description: 'Powder-free, chemo-rated heavy duty nitrile barriers with micro-textured skin grip.',
-    longDescription: 'High-density nitrile examination gloves offering premium puncture resistance, comfortable elastic contouring, and chemotherapeutic fluid resistance. Designed for heavy laboratory, surgical suite, and dental clinic safety barriers.',
-    origin: 'Malaysia / Germany Hub',
-    packSize: '100 pieces per dispenser box',
-    certifications: ['EN 455 (1-4)', 'ASTM D6319', 'FDA 510(k)'],
-    keySpec: 'AQL 1.5, Chemo-rated according to ASTM D6978',
-    image: 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=600&q=80'
+    image: '/pulp-extractor.jpg'
   },
   {
     id: 'surg-03',
@@ -134,6 +108,6 @@ export const PRODUCTS: Product[] = [
     packSize: '10 instruments per set',
     certifications: ['CE 0123', 'FDA 510(k)', 'ISO 13485'],
     keySpec: 'Autoclavable stainless steel, Ergonomic handle design',
-    image: '/operative-instruments.png'
+    image: '/operative-instruments.jpg'
   }
 ];

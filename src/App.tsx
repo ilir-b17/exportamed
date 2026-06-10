@@ -784,9 +784,6 @@ Please provide standard shipping lead times, MOQ, and wholesale pricing. Thank y
                             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                             referrerPolicy="no-referrer"
                           />
-                          <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2.5 py-1.5 rounded shadow-sm text-xs font-semibold text-slate-800 flex items-center gap-1.5 border border-slate-200">
-                            <span className="text-sm">📍</span> {product.origin}
-                          </div>
                           
                           {/* Sku overlay branding */}
                           <div className="absolute bottom-3 left-3 bg-slate-950/80 backdrop-blur-xs px-2.5 py-1 rounded text-[10px] font-bold tracking-widest text-slate-300 font-mono">
@@ -900,11 +897,33 @@ Please provide standard shipping lead times, MOQ, and wholesale pricing. Thank y
               e.preventDefault();
               setIsSending(true);
               
-              // Simulate API call
-              setTimeout(() => {
-                setIsSending(false);
-                setIsMessageSent(true);
-              }, 1500);
+              const name = (document.getElementById('name') as HTMLInputElement).value;
+              const company = (document.getElementById('company') as HTMLInputElement).value;
+              const email = (document.getElementById('email') as HTMLInputElement).value;
+              const type = (document.getElementById('type') as unknown as HTMLSelectElement).value;
+              const message = (document.getElementById('message') as HTMLTextAreaElement).value;
+
+              fetch('/api/send-email', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name, company, email, type, message }),
+              })
+                .then((res) => res.json())
+                .then((data: any) => {
+                  setIsSending(false);
+                  if (data.success) {
+                    setIsMessageSent(true);
+                  } else {
+                    alert(data.error || 'An error occurred while submitting your message. Please try again.');
+                  }
+                })
+                .catch((err) => {
+                  setIsSending(false);
+                  console.error('Inquiry sending failed:', err);
+                  alert('Could not submit inquiry to server. Please check your internet connection or try again.');
+                });
             }}>
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                 <div>
