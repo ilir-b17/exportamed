@@ -59,7 +59,7 @@ function Logo({ className }: { className?: string }) {
 }
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState<'home' | 'catalogue'>('home');
+  const [currentPage, setCurrentPage] = useState<'home' | 'catalogue' | 'privacy'>('home');
   const [inquiryType, setInquiryType] = useState<string>('');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isMessageSent, setIsMessageSent] = useState(false);
@@ -79,7 +79,7 @@ export default function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  const navigateTo = (page: 'home' | 'catalogue') => {
+  const navigateTo = (page: 'home' | 'catalogue' | 'privacy') => {
     setCurrentPage(page);
     setMobileMenuOpen(false);
     window.scrollTo({ top: 0, behavior: 'instant' });
@@ -395,7 +395,7 @@ Please provide standard shipping lead times, MOQ, and wholesale pricing. Thank y
                         FOR MANUFACTURERS
                       </span>
                       <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-                        Expand Your Market Footprint, Zero Infrastructure Risk.
+                        Expand Your Market Footprint, Zero Infrastructure Risk
                       </h2>
                       <p className="mt-4 text-lg leading-relaxed text-slate-600">
                         Expanding in new international markets can strain internal regulatory and sales bandwidth. ExportaMed acts as your dedicated regional export partner.
@@ -452,7 +452,7 @@ Please provide standard shipping lead times, MOQ, and wholesale pricing. Thank y
                         FOR DISTRIBUTORS
                       </span>
                       <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-                        Access to Premium Brands
+                        Access to Premium Products
                       </h2>
                       <p className="mt-4 text-lg leading-relaxed text-slate-600">
                         Procuring top-tier clinical goods should not mean facing unpredictable lead times or administrative gridlock.
@@ -619,7 +619,7 @@ Please provide standard shipping lead times, MOQ, and wholesale pricing. Thank y
               </div>
             </section>
           </motion.div>
-        ) : (
+        ) : currentPage === 'catalogue' ? (
           /* EXPLORE CATALOGUE PAGE (VIBRANT & INTERACTIVE INVENTORY) */
           <motion.div
             key="cataloguePage"
@@ -851,10 +851,78 @@ Please provide standard shipping lead times, MOQ, and wholesale pricing. Thank y
               </div>
             </section>
           </motion.div>
+        ) : (
+          /* PRIVACY POLICY PAGE */
+          <motion.div
+            key="privacyPage"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -15 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="pt-24 pb-20"
+          >
+            <div className="mx-auto max-w-3xl px-6 lg:px-8">
+              <button 
+                onClick={() => navigateTo('home')}
+                className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-500 hover:text-blue-950 mb-8 bg-transparent border-none cursor-pointer transition-colors"
+              >
+                <ArrowLeft className="h-4 w-4" /> Back to Home
+              </button>
+              
+              <article className="prose prose-slate max-w-none text-slate-600 space-y-6">
+                <h1 className="text-3xl font-bold tracking-tight text-slate-900 mb-2">Privacy Policy</h1>
+                <p className="text-sm font-medium text-slate-500 pb-8 border-b border-slate-200">Last Updated: June 2026</p>
+                
+                <p className="leading-relaxed text-lg">
+                  ExportaMed ("we," "our," or "us") operates as a pre-commercial market validation project. We are committed to protecting your privacy and handling your data transparently in accordance with the General Data Protection Regulation (GDPR).
+                </p>
+
+                <section className="pt-6">
+                  <h2 className="text-xl font-bold text-slate-900 mb-4">1. Data We Collect</h2>
+                  <p className="mb-4">When you interact with our platform or submit an inquiry through our forms, we may collect the following information:</p>
+                  <ul className="list-disc pl-5 space-y-2 marker:text-slate-400">
+                    <li>Name and professional title.</li>
+                    <li>Corporate entity name.</li>
+                    <li>Corporate email address and communication preferences.</li>
+                    <li>Any specific details provided within your inquiry message.</li>
+                  </ul>
+                </section>
+
+                <section className="pt-6">
+                  <h2 className="text-xl font-bold text-slate-900 mb-4">2. How and Why We Use Your Data</h2>
+                  <p className="mb-4">We collect this data strictly for legitimate market validation interests (Art. 6 para. 1 lit. f GDPR). Your data is used exclusively to:</p>
+                  <ul className="list-disc pl-5 space-y-2 mb-6 marker:text-slate-400">
+                    <li>Evaluate regional market demand and supplier alignment.</li>
+                    <li>Respond directly to your network inquiries or sample requests.</li>
+                  </ul>
+                  <p>We do not sell, trade, rent, or lease your personal data to third parties. We do not use your data for automated marketing or data-scraping profiling.</p>
+                </section>
+
+                <section className="pt-6">
+                  <h2 className="text-xl font-bold text-slate-900 mb-4">3. Data Storage and Retention</h2>
+                  <p>Because this is a pre-commercial phase, all data submitted through this website is stored securely on encrypted servers. We retain your contact information only for the duration of this validation phase or until you request its deletion.</p>
+                </section>
+
+                <section className="pt-6">
+                  <h2 className="text-xl font-bold text-slate-900 mb-4">4. Your Rights Under GDPR</h2>
+                  <p className="mb-4">As a user located in the European Union or interacting with an EU-managed concept, you hold the following rights regarding your data:</p>
+                  <ul className="list-disc pl-5 space-y-2 mb-8 marker:text-slate-400">
+                    <li><strong>Right to Access:</strong> You can request a copy of the data we hold about you.</li>
+                    <li><strong>Right to Rectification:</strong> You can request that we correct inaccurate information.</li>
+                    <li><strong>Right to Erasure ("Right to be Forgotten"):</strong> You can request that we permanently delete your data at any time.</li>
+                  </ul>
+                  <p className="bg-slate-50 p-6 rounded-lg border border-slate-200">
+                    To exercise any of these rights, please contact our data manager directly at: <a href="mailto:office@exportamed.com" className="font-semibold text-blue-900 hover:underline">office@exportamed.com</a>.
+                  </p>
+                </section>
+              </article>
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
 
       {/* COMPLIANT GENERAL CONTACT SECTION */}
+      {currentPage !== 'privacy' && (
       <section id="contact" className="pt-[100px] pb-[100px] bg-white border-t border-slate-200">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -1006,9 +1074,10 @@ Please provide standard shipping lead times, MOQ, and wholesale pricing. Thank y
           </motion.div>
         </div>
       </section>
+      )}
 
       {/* FOOTER */}
-      <footer className="bg-slate-950 py-16 border-t border-white/10 text-white">
+      <footer className="bg-slate-950 pt-[30px] pb-[30px] border-t border-white/10 text-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <button 
@@ -1020,14 +1089,16 @@ Please provide standard shipping lead times, MOQ, and wholesale pricing. Thank y
             </button>
             <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm font-medium text-slate-400">
               <a href="mailto:office@exportamed.com" className="hover:text-white transition-colors">office@exportamed.com</a>
-              <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-white transition-colors">Terms of Trade</a>
-              <a href="#" className="hover:text-white transition-colors">Regulatory Disclosures</a>
+              <a href="#" onClick={(e) => { e.preventDefault(); navigateTo('privacy'); }} className="hover:text-white transition-colors">Privacy Policy</a>
             </div>
           </div>
-          <div className="mt-8 border-t border-white/10 pt-8">
+          <div className="mt-2 border-t border-white/10 pt-2 flex flex-col gap-4 h-[98px]">
+            <p className="text-xs text-slate-500 max-w-4xl mx-auto text-center leading-relaxed">
+              <span className="text-slate-400 font-semibold uppercase tracking-wider mr-1">Disclaimer:</span> 
+              ExportaMed is currently undergoing pre-commercial validation and corporate formation. This digital catalog serves exclusively as a portfolio showcase for market research and evaluation. No commercial distribution, data-selling, or trading is currently active.
+            </p>
             <p className="text-center text-sm text-slate-500">
-              © 2026 ExportaMed. All rights reserved. Registered global medical distributors.
+              © 2026 ExportaMed. All rights reserved.
             </p>
           </div>
         </div>
