@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useId, useState, useEffect, MouseEvent } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   ArrowRight, 
   CheckCircle2, 
@@ -55,6 +55,185 @@ function Logo({ className }: { className?: string }) {
       className={`object-contain ${className}`}
       referrerPolicy="no-referrer"
     />
+  );
+}
+
+function InteractiveNetBackground() {
+  const canvasRef = React.useRef<HTMLCanvasElement>(null);
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const mouseRef = React.useRef({ x: -1000, y: -1000, targetX: -1000, targetY: -1000 });
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d', { alpha: true });
+    if (!ctx) return;
+
+    let animationFrameId: number;
+    let resizeObserver: ResizeObserver;
+
+    const cellSize = 120; // Wide boxes
+    let rows = 0;
+    let cols = 0;
+    let points: { baseX: number, baseY: number, x: number, y: number, vx: number, vy: number }[][] = [];
+
+    const initNet = () => {
+      points = [];
+      cols = Math.ceil(canvas.width / cellSize) + 2;
+      rows = Math.ceil(canvas.height / cellSize) + 2;
+
+      for (let i = 0; i < rows; i++) {
+        const row = [];
+        for (let j = 0; j < cols; j++) {
+          row.push({
+            baseX: (j - 1) * cellSize,
+            baseY: (i - 1) * cellSize,
+            x: (j - 1) * cellSize,
+            y: (i - 1) * cellSize,
+            vx: 0,
+            vy: 0
+          });
+        }
+        points.push(row);
+      }
+    };
+
+    let time = 0;
+
+    const draw = () => {
+      time += 0.015;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Smooth mouse follow
+      mouseRef.current.x += (mouseRef.current.targetX - mouseRef.current.x) * 0.1;
+      mouseRef.current.y += (mouseRef.current.targetY - mouseRef.current.y) * 0.1;
+
+      const mouseX = mouseRef.current.x;
+      const mouseY = mouseRef.current.y;
+      const mouseActive = mouseRef.current.targetX !== -1000 && mouseRef.current.targetY !== -1000;
+
+      for (let i = 0; i < rows; i++) {
+        for (let j = 0; j < cols; j++) {
+          const point = points[i][j];
+
+          // Ambient idle weaving
+          let waveX = Math.sin(time + j * 0.5 + i * 0.2) * 15;
+          let waveY = Math.cos(time + i * 0.5 + j * 0.2) * 15;
+
+          let dx = waveX;
+          let dy = waveY;
+
+          if (mouseActive) {
+            const distX = mouseX - point.baseX;
+            const distY = mouseY - point.baseY;
+            const dist = Math.sqrt(distX * distX + distY * distY);
+            
+            // Interaction radius
+            const radius = 350;
+            if (dist < radius) {
+              const force = (radius - dist) / radius;
+              // Push points away from mouse gently
+              dx += -(distX / dist) * force * 60;
+              dy += -(distY / dist) * force * 60;
+            }
+          }
+
+          // Spring physics to return to base + offset
+          const targetX = point.baseX + dx;
+          const targetY = point.baseY + dy;
+
+          point.vx += (targetX - point.x) * 0.06;
+          point.vy += (targetY - point.y) * 0.06;
+
+          // Friction
+          point.vx *= 0.75;
+          point.vy *= 0.75;
+
+          point.x += point.vx;
+          point.y += point.vy;
+        }
+      }
+
+      // Draw the net
+      ctx.strokeStyle = 'rgba(59, 130, 246, 0.15)'; // Very transparent to not distract
+      ctx.lineWidth = 1;
+
+      for (let i = 0; i < rows; i++) {
+        for (let j = 0; j < cols; j++) {
+          const point = points[i][j];
+
+          // Connect to right
+          if (j < cols - 1) {
+            ctx.beginPath();
+            ctx.moveTo(point.x, point.y);
+            ctx.lineTo(points[i][j + 1].x, points[i][j + 1].y);
+            ctx.stroke();
+          }
+
+          // Connect to bottom
+          if (i < rows - 1) {
+            ctx.beginPath();
+            ctx.moveTo(point.x, point.y);
+            ctx.lineTo(points[i + 1][j].x, points[i + 1][j].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      animationFrameId = requestAnimationFrame(draw);
+    };
+
+    const handleResize = () => {
+      if (containerRef.current) {
+        canvas.width = containerRef.current.offsetWidth;
+        canvas.height = containerRef.current.offsetHeight;
+        initNet();
+      }
+    };
+
+    resizeObserver = new ResizeObserver(handleResize);
+    if (containerRef.current) {
+      resizeObserver.observe(containerRef.current);
+    }
+    
+    handleResize();
+    draw();
+
+    const handleWindowMouseMove = (e: MouseEvent) => {
+      if (!canvas) return;
+      const rect = canvas.getBoundingClientRect();
+      if (e.clientX >= rect.left && e.clientX <= rect.right && e.clientY >= rect.top && e.clientY <= rect.bottom) {
+        mouseRef.current.targetX = e.clientX - rect.left;
+        mouseRef.current.targetY = e.clientY - rect.top;
+      } else {
+        mouseRef.current.targetX = -1000;
+        mouseRef.current.targetY = -1000;
+      }
+    };
+    
+    window.addEventListener('mousemove', handleWindowMouseMove);
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+      resizeObserver.disconnect();
+      window.removeEventListener('mousemove', handleWindowMouseMove);
+    };
+  }, []);
+
+  return (
+    <div 
+      ref={containerRef}
+      className="absolute inset-0 z-0 overflow-hidden pointer-events-none" 
+      style={{
+        maskImage: 'radial-gradient(circle at center, black 50%, transparent 90%)',
+        WebkitMaskImage: 'radial-gradient(circle at center, black 50%, transparent 90%)'
+      }}
+    >
+      <canvas
+        ref={canvasRef}
+        className="w-full h-full block"
+      />
+    </div>
   );
 }
 
@@ -268,67 +447,8 @@ Please provide standard shipping lead times, MOQ, and wholesale pricing. Thank y
           >
             {/* HERO */}
             <section className="relative overflow-hidden bg-white px-6 pt-[140px] pb-[80px] lg:px-8">
-              {/* Background Net pattern */}
-              <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
-                <div 
-                  className="absolute inset-0" 
-                  style={{ 
-                    maskImage: 'radial-gradient(circle at center, black 50%, transparent 90%)',
-                    WebkitMaskImage: 'radial-gradient(circle at center, black 50%, transparent 90%)'
-                  }}
-                >
-                  <motion.div 
-                    className="absolute -inset-[50%] opacity-[0.15]"
-                    style={{
-                      backgroundImage: 'linear-gradient(to right, #475569 1px, transparent 1px), linear-gradient(to bottom, #475569 1px, transparent 1px)',
-                      backgroundSize: '56px 56px',
-                      transform: 'rotate(12deg)'
-                    }}
-                    animate={{
-                      x: [0, -56],
-                      y: [0, -56],
-                    }}
-                    transition={{ repeat: Infinity, ease: "linear", duration: 24 }}
-                  />
-                  <motion.div 
-                    className="absolute -inset-[50%] opacity-[0.1]"
-                    style={{
-                      backgroundImage: 'linear-gradient(to right, #2563eb 1.5px, transparent 1.5px), linear-gradient(to bottom, #2563eb 1.5px, transparent 1.5px)',
-                      backgroundSize: '72px 72px',
-                      transform: 'rotate(-8deg)'
-                    }}
-                    animate={{
-                      x: [0, 72],
-                      y: [0, -72],
-                    }}
-                    transition={{ repeat: Infinity, ease: "linear", duration: 30 }}
-                  />
-                  <svg className="absolute inset-0 w-full h-full opacity-[0.25]" xmlns="http://www.w3.org/2000/svg">
-                    <g strokeWidth="2.5" fill="none">
-                      <motion.path 
-                        d="M -100,200 Q 300,50 700,250 T 1500,150" 
-                        stroke="#3b82f6"
-                        animate={{ d: [
-                          "M -100,200 Q 300,50 700,250 T 1500,150",
-                          "M -100,180 Q 350,90 750,220 T 1500,180",
-                          "M -100,200 Q 300,50 700,250 T 1500,150"
-                        ]}}
-                        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-                      />
-                      <motion.path 
-                        d="M -100,400 Q 400,200 800,450 T 1500,350" 
-                        stroke="#54788D"
-                        animate={{ d: [
-                          "M -100,400 Q 400,200 800,450 T 1500,350",
-                          "M -100,420 Q 380,180 820,430 T 1500,320",
-                          "M -100,400 Q 400,200 800,450 T 1500,350"
-                        ]}}
-                        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-                      />
-                    </g>
-                  </svg>
-                </div>
-              </div>
+              {/* Interactive Net Background */}
+              <InteractiveNetBackground />
               
               <motion.div 
                 variants={staggerContainer}
@@ -1092,7 +1212,7 @@ Please provide standard shipping lead times, MOQ, and wholesale pricing. Thank y
               <a href="#" onClick={(e) => { e.preventDefault(); navigateTo('privacy'); }} className="hover:text-white transition-colors">Privacy Policy</a>
             </div>
           </div>
-          <div className="mt-2 border-t border-white/10 pt-2 flex flex-col gap-4 h-[98px]">
+          <div className="mt-2 border-t border-white/10 pt-2 flex flex-col gap-4">
             <p className="text-xs text-slate-500 max-w-4xl mx-auto text-center leading-relaxed">
               <span className="text-slate-400 font-semibold uppercase tracking-wider mr-1">Disclaimer:</span> 
               ExportaMed is currently undergoing pre-commercial validation and corporate formation. This digital catalog serves exclusively as a portfolio showcase for market research and evaluation. No commercial distribution, data-selling, or trading is currently active.
